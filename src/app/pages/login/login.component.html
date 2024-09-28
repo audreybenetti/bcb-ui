@@ -1,7 +1,9 @@
 <app-default-login-layout
-    title="Login to your account"
+    title="Login into your account"
     primaryBtnText="Login Now"
     secondaryBtnText="Signup Now"
+    (submit)="submit()"
+    [disablePrimaryBtn]="!loginForm.valid"
 >
     <form [formGroup]="loginForm">
         <app-primary-input
@@ -18,10 +20,9 @@
             inputName="password"
             type="password"
             label="Your Password"
-            placeholder="Enter your password"
         >
         <img src="/assets/svg/password-icon.svg"/>
     </app-primary-input>
-    <span>Forgot your password?</span>
+    <span>Forgot password?</span>
     </form>
 </app-default-login-layout>

@@ -4,7 +4,13 @@
        <h2>{{ title }}</h2>
        <ng-content></ng-content>
        <div class="btn-wrapper">
-            <button class="btn-primary">{{ primaryBtnText }}</button>
+            <button 
+                class="btn-primary" 
+                (click)="submit()"
+                [disabled]="disablePrimaryBtn"
+            >
+                {{ primaryBtnText }}
+            </button>
             <div class="divider">
                 <div></div>
                 <span>or</span>
@@ -14,6 +20,7 @@
        </div>
     </section>
     <section class="main-section">
-        <h1>Comunicação fácil, clientes satisfeitos!</h1>
+        <h1>You Should, MoveIt!</h1>
         <img src="/assets/svg/main-illustration.svg"/>
     </section>
+</main>
