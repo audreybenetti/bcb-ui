@@ -1,0 +1,28 @@
+<ng-container *ngIf="routerLink; else normalButton">
+    <button
+      class="btn-primary"
+      [routerLink]="routerLink"
+      [ngClass]="{
+        'btn-primary': buttonType === 'primary',
+        'btn-secondary': buttonType === 'secondary',
+        'disabled': disabled
+      }"
+    >
+      {{ buttonText }}
+    </button>
+  </ng-container>
+  
+  <ng-template #normalButton>
+    <button
+      class="btn-primary"
+      (click)="submit()"
+      [ngClass]="{
+        'btn-primary': buttonType === 'primary',
+        'btn-secondary': buttonType === 'secondary',
+        'disabled': disabled
+      }"
+    >
+      {{ buttonText }}
+    </button>
+  </ng-template>
+  

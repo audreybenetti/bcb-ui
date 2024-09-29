@@ -1,0 +1,18 @@
+<main>
+    <section class="menu-section">
+        <img src="/assets/svg/logo.svg" />
+        <div class="btn-wrapper">
+            <app-button
+            *ngFor="let button of filteredButtons"
+            [routerLink]="button.routerLink"
+            [buttonText]="button.label"
+            buttonType="primary"
+            (onClick)="submit()"
+        ></app-button>
+        </div>
+    </section>
+
+    <section class="main-section">
+        <ng-content></ng-content>
+    </section>
+</main>

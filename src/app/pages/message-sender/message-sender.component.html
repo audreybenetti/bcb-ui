@@ -1,0 +1,37 @@
+<app-menu>
+    <form [formGroup]="messageForm">
+        <h2>Envie sua mensagem:</h2>
+        <app-primary-input
+            formControlName="telefoneRemetente"
+            inputName="telefoneRemetente"
+            type="text"
+            label="Telefone remetente"
+            placeholder="(XX) XXXXX-XXXX"
+        >
+            <img src="/assets/svg/email-icon.svg"/>
+        </app-primary-input>
+        <app-primary-input
+            formControlName="telefoneDestinatario"
+            inputName="telefoneDestinatario"
+            type="text"
+            label="Telefone destinatário"
+            placeholder="(XX) XXXXX-XXXX"
+        >
+            <img src="/assets/svg/email-icon.svg"/>
+        </app-primary-input>
+        <app-primary-input
+            formControlName="mensagem"
+            inputName="mensagem"
+            type="text"
+            label="Mensagem"
+            placeholder="Placerat senectus aliquam fames, arcu phasellus ipsum egestas, diam pharetra. "
+        >
+            <img src="/assets/svg/email-icon.svg"/>
+        </app-primary-input>
+        <app-button
+        buttonText="Enviar mensagem"
+        buttonType="primary"
+        (clicked)="submit()"
+      ></app-button>
+    </form>
+</app-menu>
