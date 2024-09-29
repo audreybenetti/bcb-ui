@@ -19,6 +19,7 @@ main {
     .form-section {
         flex-grow: 0.3;
         padding: 0 35px;
+        overflow: hidden;
         img {
             margin-bottom: 30px;
         }

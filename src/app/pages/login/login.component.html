@@ -1,8 +1,9 @@
 <app-default-login-layout
-    title="Login into your account"
+    title="Login to your account"
     primaryBtnText="Login Now"
     secondaryBtnText="Signup Now"
     (submit)="submit()"
+    (navigate)="navigate()"
     [disablePrimaryBtn]="!loginForm.valid"
 >
     <form [formGroup]="loginForm">
@@ -10,8 +11,8 @@
             formControlName="email"
             inputName="email"
             type="email"
-            label="Email"
-            placeholder="johndoe@gmail.com"
+            label="E-mail"
+            placeholder="team@technovalabs.com"
         >
             <img src="/assets/svg/email-icon.svg"/>
         </app-primary-input>
@@ -19,7 +20,8 @@
             formControlName="password"
             inputName="password"
             type="password"
-            label="Your Password"
+            label="Senha"
+            placeholder="Insira a senha"
         >
         <img src="/assets/svg/password-icon.svg"/>
     </app-primary-input>

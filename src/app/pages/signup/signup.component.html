@@ -1,0 +1,34 @@
+<app-default-login-layout 
+    title="Login to your account"
+    primaryBtnText="Signup now"
+    secondaryBtnText="Login now"
+    (submit)="submit()"
+    (navigate)="navigate()"
+    [disablePrimaryBtn]="!signupForm.valid">
+    <form [formGroup]="signupForm">
+        <app-primary-input 
+            formControlName="name" 
+            inputName="name" 
+            type="text" 
+            label="Nome"
+            placeholder="TechNova Labs">
+            <img src="/assets/svg/email-icon.svg" />
+        </app-primary-input>
+        <app-primary-input 
+            formControlName="email" 
+            inputName="email" 
+            type="email" 
+            label="E-mail"
+            placeholder="team@technovalabs.com">
+            <img src="/assets/svg/email-icon.svg" />
+        </app-primary-input>
+        <app-primary-input 
+            formControlName="password" 
+            inputName="password" 
+            type="password" 
+            label="Senha"
+            placeholder="Insira a senha">
+            <img src="/assets/svg/password-icon.svg" />
+        </app-primary-input>
+    </form>
+</app-default-login-layout>
