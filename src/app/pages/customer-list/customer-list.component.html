@@ -1,0 +1,20 @@
+<app-menu>
+    <div class="client-list">
+        <h2>Lista de clientes</h2>
+
+        <app-primary-input
+        type="text" 
+        placeholder="Pesquisar cliente..." 
+        [(ngModel)]="searchTerm"
+        (input)="onSearchChange(searchTerm)" 
+    >
+    <img src="/assets/svg/search-icon.svg"/>
+</app-primary-input>
+    
+        <ul>
+            <li *ngFor="let cliente of getClientes()" (click)="openCustomer(cliente.cnpj)" style="cursor: pointer;">
+                <strong>{{ cliente.nome }}</strong> - {{ cliente.cnpj }}
+            </li>
+        </ul>
+    </div>
+</app-menu>

@@ -16,7 +16,7 @@ export class ButtonComponent {
   @Input() routerLink?: string;
   @Input() buttonType: 'primary' | 'secondary' = 'primary';
   @Input() disabled: boolean = false;
-  @Input() buttonText: string = '';
+  @Input() buttonText: string = "";
   @Output("submit") onSubmit = new EventEmitter();
 
   submit() {

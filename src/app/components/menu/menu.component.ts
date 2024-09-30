@@ -25,7 +25,7 @@ export class MenuComponent {
   @Input() mainBtnText: string = "";
   @Input() disableMainBtn: boolean = true;
   @Output("submit") onSubmit = new EventEmitter();
-  userRole = 'user';
+  userRole = 'admin';
 
   submit(){
     this.onSubmit.emit();
@@ -36,9 +36,10 @@ export class MenuComponent {
   }
 
   buttons = [
-    { label: 'Adicionar número', routerLink: '/register/costumer', roles: ['admin', 'user'] },
+    { label: 'Adicionar número', routerLink: '/register/customer', roles: ['user'] },
     { label: 'Enviar mensagem', routerLink: '/send', roles: ['user'] },
-    { label: 'Buscar cliente', routerLink: '/costumers', roles: ['admin'] },
+    { label: 'Consultar saldo', routerLink: '/customer/id', roles: ['user'] },
+    { label: 'Buscar cliente', routerLink: '/customers', roles: ['admin'] },
     { label: 'Sair', routerLink: '/login', roles: ['admin', 'user'], action: () => this.logout() },
   ];
 

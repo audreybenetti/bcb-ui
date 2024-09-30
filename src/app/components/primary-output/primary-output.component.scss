@@ -1,0 +1,31 @@
+@import "../../../styles/variables.scss";
+
+.input-wrapper {
+    color: $text-color;
+    font-size: 16px;
+    text-align: start;
+
+    label {
+        margin-bottom: 10px;
+    }
+
+    .input-content {
+        width: 100%;
+        border-radius: 8px;
+        display: flex;
+
+        input {
+            border: none;
+            border-radius: 8px;
+            background-color: $gray-secondary-bg;
+            font-size: 16px;
+            padding: 12px 20px; 
+            width: 100%;
+            cursor: not-allowed; 
+
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+}

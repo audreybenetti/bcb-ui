@@ -1,0 +1,106 @@
+<app-menu>
+  <div class="client-details" *ngIf="cliente; else loading">
+    <h1>Detalhes do Cliente</h1>
+    
+    <app-primary-output 
+      inputName="nome" 
+      label="Nome empresa" 
+      [placeholder]="cliente.nome" 
+      readonly>
+    </app-primary-output>
+
+    <app-primary-output 
+      inputName="email" 
+      label="E-mail" 
+      [placeholder]="cliente.email" 
+      readonly>
+    </app-primary-output>
+
+    <app-primary-output 
+      inputName="telefone" 
+      label="Telefone" 
+      [placeholder]="cliente.telefone" 
+      readonly>
+    </app-primary-output>
+
+    <app-primary-output 
+      inputName="cnpj" 
+      label="Cnpj" 
+      [placeholder]="cliente.cnpj" 
+      readonly>
+    </app-primary-output>
+
+    <app-primary-output 
+      inputName="nomeResponsavel" 
+      label="Nome responsável" 
+      [placeholder]="cliente.nomeResponsavel" 
+      readonly>
+    </app-primary-output>
+
+    <app-primary-output 
+      inputName="cpfResponsavel" 
+      label="Cpf responsável" 
+      [placeholder]="cliente.cpfResponsavel" 
+      readonly>
+    </app-primary-output>
+
+    <app-primary-output 
+      inputName="plano" 
+      label="Plano" 
+      [placeholder]="cliente.nomePlano" 
+      readonly>
+    </app-primary-output>
+
+    <ng-container *ngIf="cliente.nomePlano === Plano.PRE_PAGO">
+      <app-primary-output 
+        inputName="saldo" 
+        label="Saldo" 
+        [placeholder]="cliente.saldo !== null ? (cliente.saldo | currency:'BRL':'symbol':'1.2-2') : '0'" 
+        readonly>
+      </app-primary-output>
+    </ng-container>
+
+    <ng-container *ngIf="cliente.nomePlano === Plano.POS_PAGO">
+      <app-primary-output 
+        inputName="creditoUtilizado" 
+        label="Crédito utilizado" 
+        [placeholder]="cliente.creditoUtilizado !== null ? cliente.creditoUtilizado.toString() : '0'" 
+        readonly>
+      </app-primary-output>
+
+      <app-primary-output 
+        inputName="limiteCredito" 
+        label="Limite de crédito" 
+        [placeholder]="cliente.limiteCredito !== null ? cliente.limiteCredito.toString() : '0'" 
+        readonly>
+      </app-primary-output>
+    </ng-container>
+
+    <div class="button-group full-width">
+      <app-button 
+        mat-raised-button 
+        color="primary"
+        tipoAcao="PLANO"
+        buttonText="Alterar plano"
+        buttonType="primary"
+        class="full-button"
+        (click)="alterarPlano()"
+      ></app-button>
+    
+      <app-button 
+        mat-raised-button 
+        color="primary"
+        tipoAcao="SALDO"
+        buttonText="{{ cliente.nomePlano === Plano.PRE_PAGO ? 'Alterar saldo' : 'Alterar limite' }}"
+        buttonType="primary"
+        class="full-button"
+        (click)="alterarSaldo()"
+      ></app-button>
+
+    </div>
+  </div>
+  
+  <ng-template #loading>
+    <p>Carregando dados do cliente...</p>
+  </ng-template>
+</app-menu>
