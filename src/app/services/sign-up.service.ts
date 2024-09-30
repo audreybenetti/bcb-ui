@@ -13,10 +13,11 @@ export class SignUpService {
 
   sign(name: string, email: string, password: string) {
     return this.httpCliente.post<LoginResponse>(this.apiUrl +"/auth/register", 
-      { name, email, password}).pipe(
+      { name, email,  role: "user", password}).pipe(
       tap((value) => {
         sessionStorage.setItem("auth-token", value.token),
-        sessionStorage.setItem("username", value.name)
+        sessionStorage.setItem("email", value.email)
+        sessionStorage.setItem("role", value.role)
       }
     ));
   }

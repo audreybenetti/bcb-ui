@@ -1,0 +1,40 @@
+<app-menu>
+    <div class="edit-client-details">
+      <h1>Editar plano</h1>
+      <form [formGroup]="editForm">
+        <app-primary-input
+        formControlName="plano"
+        inputName="plano"
+        label="Plano"
+        placeholder="Insira o novo plano">
+      </app-primary-input>
+  
+      <ng-container *ngIf="plano === 'PÓS_PAGO'">
+        <app-primary-input
+          formControlName="limiteCredito"
+          inputName="limiteCredito"
+          label="Limite de crédito"
+          [placeholder]="limiteCredito !== null ? limiteCredito.toString() : ''">
+        </app-primary-input>
+      </ng-container>
+  
+      <ng-container *ngIf="plano === 'PRÉ_PAGO'">
+        <app-primary-input
+          formControlName="saldo"
+          inputName="saldo"
+          label="Saldo"
+          [placeholder]="saldo !== null ? saldo.toString() : ''">
+        </app-primary-input>
+      </ng-container>
+      <span>*Atente-se ao preencher o plano: Escreva PÓS-PAGO ou PRÉ-PAGO.</span>
+      <app-button
+        mat-raised-button 
+        color="primary"
+        buttonText="Salvar"
+        (click)="saveChanges()">
+      </app-button>
+      </form>
+
+    </div>
+  </app-menu>
+  

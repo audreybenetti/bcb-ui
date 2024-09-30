@@ -1,52 +1,61 @@
 <app-menu
-    title="Login to your account"
-    mainBtnText="Login Now"
-    (submit)="submit()"
-    [disableMainBtn]="!registerForm.valid"    
+  title="Login to your account"
+  mainBtnText="Login Now"
+  [disableMainBtn]="!registerForm.valid || registerForm.disabled"
 >
-    <form [formGroup]="registerForm">
-        <h2>Por favor, finalize seu cadastro:</h2>
-        <app-primary-input
-            formControlName="telefone"
-            inputName="telefone"
-            type="text"
-            label="Telefone"
-            placeholder="(XX) XXXXX-XXXX"
-        >
-            <img src="/assets/svg/email-icon.svg"/>
-        </app-primary-input>
-        <app-primary-input
-            formControlName="cnpj"
-            inputName="cnpj"
-            type="text"
-            label="Cnpj"
-            placeholder="XX.XXX.XXX/XXXX-XX"
-        >
-            <img src="/assets/svg/email-icon.svg"/>
-        </app-primary-input>
-        <app-primary-input
-            formControlName="nomeResponsavel"
-            inputName="nomeResponsavel"
-            type="text"
-            label="Nome responsável"
-            placeholder="John Doe"
-        >
-            <img src="/assets/svg/email-icon.svg"/>
-        </app-primary-input>
-        <app-primary-input
-            formControlName="cpfResponsavel"
-            inputName="cpfResponsavel"
-            type="text"
-            label="Cpf responsável"
-            placeholder="XXX.XXX.XXX-XX"
-        >
-            <img src="/assets/svg/email-icon.svg"/>
-        </app-primary-input>
-        <span>*O número inserido será utilizado para envio de mensagens via Whatsapp e SMS.</span>
-        <app-button
-        buttonText="Finalizar cadastro"
-        buttonType="primary"
-        (clicked)="submit()"
-      ></app-button>
-    </form>
+  <form [formGroup]="registerForm">
+    <h2>Por favor, finalize seu cadastro:</h2>
+    <app-primary-input
+      formControlName="telefone"
+      inputName="telefone"
+      type="text"
+      label="Telefone"
+      placeholder="(XX) XXXXX-XXXX"
+      [disabled]="registerForm.disabled"
+    >
+      <img src="/assets/svg/email-icon.svg"/>
+    </app-primary-input>
+
+    <app-primary-input
+      formControlName="cnpj"
+      inputName="cnpj"
+      type="text"
+      label="Cnpj"
+      placeholder="XX.XXX.XXX/XXXX-XX"
+      [disabled]="registerForm.disabled"
+    >
+      <img src="/assets/svg/email-icon.svg"/>
+    </app-primary-input>
+
+    <app-primary-input
+      formControlName="nomeResponsavel"
+      inputName="nomeResponsavel"
+      type="text"
+      label="Nome responsável"
+      placeholder="John Doe"
+      [disabled]="registerForm.disabled"
+    >
+      <img src="/assets/svg/email-icon.svg"/>
+    </app-primary-input>
+
+    <app-primary-input
+      formControlName="cpfResponsavel"
+      inputName="cpfResponsavel"
+      type="text"
+      label="Cpf responsável"
+      placeholder="XXX.XXX.XXX-XX"
+      [disabled]="registerForm.disabled"
+    >
+      <img src="/assets/svg/email-icon.svg"/>
+    </app-primary-input>
+
+    <span>*O número inserido será utilizado para envio de mensagens via Whatsapp e SMS.</span>
+
+    <app-button
+      buttonText="Finalizar cadastro"
+      buttonType="primary"
+      [disabled]="registerForm.disabled"
+      (clicked)="submit()"
+    ></app-button>
+  </form>
 </app-menu>

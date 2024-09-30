@@ -76,28 +76,12 @@
       </app-primary-output>
     </ng-container>
 
-    <div class="button-group full-width">
-      <app-button 
-        mat-raised-button 
+    <app-button 
         color="primary"
-        tipoAcao="PLANO"
         buttonText="Alterar plano"
         buttonType="primary"
-        class="full-button"
         (click)="alterarPlano()"
       ></app-button>
-    
-      <app-button 
-        mat-raised-button 
-        color="primary"
-        tipoAcao="SALDO"
-        buttonText="{{ cliente.nomePlano === Plano.PRE_PAGO ? 'Alterar saldo' : 'Alterar limite' }}"
-        buttonType="primary"
-        class="full-button"
-        (click)="alterarSaldo()"
-      ></app-button>
-
-    </div>
   </div>
   
   <ng-template #loading>

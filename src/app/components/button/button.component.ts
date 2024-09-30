@@ -20,8 +20,6 @@ export class ButtonComponent {
   @Output("submit") onSubmit = new EventEmitter();
 
   submit() {
-    if (!this.disabled) {
-      this.onSubmit.emit();
-    }
+    this.onSubmit.emit();
   }
 }

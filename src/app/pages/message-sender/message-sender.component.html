@@ -2,20 +2,19 @@
     <form [formGroup]="messageForm">
         <h2>Envie sua mensagem:</h2>
         <app-primary-input
-            formControlName="telefoneRemetente"
-            inputName="telefoneRemetente"
-            type="text"
-            label="Telefone remetente"
-            placeholder="(XX) XXXXX-XXXX"
-        >
-            <img src="/assets/svg/email-icon.svg"/>
-        </app-primary-input>
+        formControlName="telefoneRemetente"
+        inputName="telefoneRemetente" 
+        label="Telefone remetente" 
+        placeholder="telefoneRemetente" 
+        [disabled]="true"
+        ></app-primary-input>
         <app-primary-input
             formControlName="telefoneDestinatario"
             inputName="telefoneDestinatario"
             type="text"
             label="Telefone destinatário"
-            placeholder="(XX) XXXXX-XXXX"
+            placeholder="Insira o número do destinatário."
+            [disabled]="messageForm.disabled"
         >
             <img src="/assets/svg/email-icon.svg"/>
         </app-primary-input>
@@ -24,14 +23,39 @@
             inputName="mensagem"
             type="text"
             label="Mensagem"
-            placeholder="Placerat senectus aliquam fames, arcu phasellus ipsum egestas, diam pharetra. "
+            placeholder="Insira a mensagem a ser enviada."
+            [disabled]="messageForm.disabled"
         >
             <img src="/assets/svg/email-icon.svg"/>
         </app-primary-input>
+
+        <div class="input-wrapper">
+            <label>Modo de envio</label>
+            <div class="button-group">
+              <app-button
+                (click)="messageForm.get('tipoMensagem')?.setValue('SMS')" 
+                buttonText="SMS"
+                buttonType="secondary"
+                class="mode-button" 
+                [class.active]="modoEnvio === 'SMS'" 
+                (click)="setModoEnvio('SMS')">
+              </app-button>
+              <app-button 
+                (click)="messageForm.get('tipoMensagem')?.setValue('WHATSAPP')"
+                buttonText="WhatsApp"
+                buttonType="secondary"
+                class="mode-button" 
+                [class.active]="modoEnvio === 'WHATSAPP'" 
+                (click)="setModoEnvio('WHATSAPP')">
+              </app-button>
+            </div>
+          </div>          
+
         <app-button
         buttonText="Enviar mensagem"
         buttonType="primary"
-        (clicked)="submit()"
+        [disabled]="!messageForm.valid"
+        (click)="submit()"
       ></app-button>
     </form>
 </app-menu>

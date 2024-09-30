@@ -32,6 +32,13 @@ export class LoginComponent {
     })
   }
 
+  ngOnInit() {
+    const token = sessionStorage.getItem('authToken');
+    if (token) {
+      this.router.navigate(['/home']);
+    }
+  }
+
   submit() {
     this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
       next: () => {

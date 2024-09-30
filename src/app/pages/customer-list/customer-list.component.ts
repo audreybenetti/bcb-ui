@@ -6,6 +6,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PrimaryInputComponent } from "../../components/primary-input/primary-input.component";
 import { Router } from '@angular/router';
+import { ClienteService } from '../../services/cliente.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-costumer-list',
@@ -20,43 +22,50 @@ import { Router } from '@angular/router';
   styleUrl: './customer-list.component.scss'
 })
 export class CustomerListComponent {
-  constructor(private router: Router) {}
+  constructor(private router: Router, private clienteService: ClienteService, private toastService : ToastrService) {}
   filteredClients: Cliente[] = [];
   searchTerm: string = '';
+  loading: boolean = false;
   @Output("submit") onSubmit = new EventEmitter();
-  private clientes: Cliente[] = [
-    {
-      nome: 'John Doe',
-      email: 'john@example.com',
-      telefone: '(XX) XXXXX-XXXX',
-      cnpj: 'XXX/0001-XX',
-      nomeResponsavel: 'Jane Doe',
-      cpfResponsavel: 'XXX.XXX.XXX-XX',
-      nomePlano: Plano.PRE_PAGO, // ou Plano.POS_PAGO
-      saldo: 150.00, // Apenas para plano pré-pago
-      creditoUtilizado: 50.00, // Apenas para plano pós-pago
-      limiteCredito: 200.00, // Apenas para plano pós-pago
-      dataCadastro: '2024-01-01'
-    },
-];
+  private clientes: Cliente[] = [];
 
-onSearchChange(searchValue: string): void {
-  this.searchTerm = searchValue.toLowerCase();
-  this.filteredClients = this.clientes.filter(cliente => 
-      cliente.nome.toLowerCase().includes(this.searchTerm)
-  );
-}
+  ngOnInit() {
+    this.fetchClientes();
+  }
 
-getClientes(): Cliente[] {
+  onSearchChange(searchValue: string): void {
+    this.searchTerm = searchValue.toLowerCase();
+    this.filteredClients = this.clientes.filter(cliente => 
+        cliente.nome.toLowerCase().includes(this.searchTerm)
+    );
+  }
+
+  fetchClientes() {
+    this.loading = true;
+    this.clienteService.buscarClientes().subscribe({
+      next: (clientes) => {
+        this.clientes = clientes;
+        this.loading = false;
+      },
+      error: (error) => {
+        console.error('Erro ao buscar clientes:', error);
+        this.toastService.error('Erro ao buscar clientes.');
+        this.loading = false;
+      }
+    });
+  }
+
+
+  getClientes(): Cliente[] {
     return this.clientes;
-}
+  }
 
   submit(){
     this.onSubmit.emit();
   }
 
-  openCustomer(cnpj: string): void {
-    this.router.navigate(['/customer', cnpj]);
+  openCustomer(email: string): void {
+    this.router.navigate(['/customer', email]);
   }
 
 }

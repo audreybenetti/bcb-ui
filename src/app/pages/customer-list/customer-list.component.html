@@ -12,7 +12,7 @@
 </app-primary-input>
     
         <ul>
-            <li *ngFor="let cliente of getClientes()" (click)="openCustomer(cliente.cnpj)" style="cursor: pointer;">
+            <li *ngFor="let cliente of getClientes()" (click)="openCustomer(cliente.email)" style="cursor: pointer;">
                 <strong>{{ cliente.nome }}</strong> - {{ cliente.cnpj }}
             </li>
         </ul>

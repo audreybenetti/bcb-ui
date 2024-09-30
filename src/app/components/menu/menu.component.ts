@@ -22,23 +22,18 @@ interface MenuItem {
 export class MenuComponent {
   constructor(private toastService: ToastrService,
      private router: Router) {}
-  @Input() mainBtnText: string = "";
-  @Input() disableMainBtn: boolean = true;
-  @Output("submit") onSubmit = new EventEmitter();
-  userRole = 'admin';
+    @Input() mainBtnText: string = "";
+    @Input() disableMainBtn: boolean = true;
+    userRole = "";
 
-  submit(){
-    this.onSubmit.emit();
-  }
-
-  logout() {
-    this.toastService.success("Saindo...");
+  ngOnInit(): void {
+    this.userRole = sessionStorage.getItem('role') || 'user';
   }
 
   buttons = [
     { label: 'Adicionar número', routerLink: '/register/customer', roles: ['user'] },
     { label: 'Enviar mensagem', routerLink: '/send', roles: ['user'] },
-    { label: 'Consultar saldo', routerLink: '/customer/id', roles: ['user'] },
+    { label: 'Consultar dados', routerLink: '/customer/id', roles: ['user'] },
     { label: 'Buscar cliente', routerLink: '/customers', roles: ['admin'] },
     { label: 'Sair', routerLink: '/login', roles: ['admin', 'user'], action: () => this.logout() },
   ];
@@ -47,4 +42,9 @@ export class MenuComponent {
     return this.buttons.filter(button => button.roles.includes(this.userRole));
   }
 
+  logout() {
+    sessionStorage.clear();
+    this.toastService.success("Saindo...");
+    this.router.navigate(['/login']);
+  }
 }

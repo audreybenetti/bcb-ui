@@ -5,6 +5,9 @@ import { CustomerRegistrationComponent } from './pages/customer-registration/cus
 import { MessageSenderComponent } from './pages/message-sender/message-sender.component';
 import { CustomerListComponent } from './pages/customer-list/customer-list.component';
 import { CustomerDetailsComponent } from './pages/customer-details/customer-details.component';
+import { authGuard } from './guards/auth-guard';
+import { HomeComponent } from './pages/home/home.component';
+import { CustomerEditComponent } from './pages/customer-edit/customer-edit.component';
 
 export const routes: Routes = [
     {
@@ -16,19 +19,32 @@ export const routes: Routes = [
         component: SignUpComponent
     },
     {
+        path: "home",
+        component: HomeComponent
+    },
+    {
         path: "register/customer",
-        component: CustomerRegistrationComponent
+        component: CustomerRegistrationComponent,
+        canActivate: [authGuard]
     },
     {
         path: "send",
-        component: MessageSenderComponent
+        component: MessageSenderComponent,
+        canActivate: [authGuard]
     },
     {
         path: "customers",
-        component: CustomerListComponent
+        component: CustomerListComponent,
+        canActivate: [authGuard]
     },
     {
-        path: "customer/id",
-        component: CustomerDetailsComponent
+        path: "customer/:cnpj",
+        component: CustomerDetailsComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: "customer/edit/:email",
+        component: CustomerEditComponent,
+        canActivate: [authGuard]
     },
 ];

@@ -1,4 +1,4 @@
 export enum Plano {
-    PRE_PAGO = 'Pré-pago',
-    POS_PAGO = 'Pós-pago',
+    PRE_PAGO = 'PRÉ-PAGO',
+    POS_PAGO = 'PÓS-PAGO',
 }
